@@ -406,9 +406,15 @@ export function AdminPanel() {
                   </div>
                 ))}
               </div>
-              <div className="mt-4 flex items-center gap-3 rounded-lg border border-dashed border-acento bg-acento/5 px-4 py-5 text-sm text-tenue">
-                <span className="text-xl">🖼️</span>
-                <span><span className="font-semibold text-acento">Subir promo</span> — elegí el banner (ideal ancho, tipo cartel). Se muestra completo en PC y celular. Podés sumar varias y ordenarlas.</span>
+              <div className="mt-4 rounded-lg border border-dashed border-acento bg-acento/5 px-4 py-4 text-sm text-tenue">
+                <div className="flex items-center gap-3">
+                  <span className="text-xl">🖼️</span>
+                  <span><span className="font-semibold text-acento">Subir promo</span> — podés sumar varias y ordenarlas.</span>
+                </div>
+                <p className="mt-2.5 flex flex-wrap items-center gap-2">
+                  <span className="rounded-full bg-acento/15 px-2.5 py-1 text-xs font-semibold text-acento">📐 Medida ideal: 1600 × 600 px</span>
+                  <span className="text-xs">(proporción 8:3, tipo cartel ancho). Con esa medida entra justa, sin recortes.</span>
+                </p>
               </div>
               <Bloqueado />
             </div>
@@ -426,7 +432,11 @@ export function AdminPanel() {
                 >
                   <span className="absolute bottom-2 right-2 cursor-not-allowed rounded-lg bg-background/90 px-3 py-1.5 text-xs font-semibold text-acento">🖼️ Cambiar imagen</span>
                 </div>
-                <p className="mb-4 text-[11px] text-tenue">Se ve detrás del texto del inicio.</p>
+                <p className="mb-1 flex flex-wrap items-center gap-2 text-[11px] text-tenue">
+                  <span className="rounded-full bg-acento/15 px-2.5 py-1 text-xs font-semibold text-acento">📐 Medida ideal: 1920 × 700 px</span>
+                  <span>Se ve detrás del texto del inicio. Es un fondo, así que dejá lo importante al centro.</span>
+                </p>
+                <div className="mb-4"></div>
                 <div className="grid gap-4">
                   <Campo label="Etiqueta de arriba" valor="Temporada Invierno · Venta por mayor" />
                   <Campo label="Título" valor="Ropa de damas y niñas directo de fábrica" />
