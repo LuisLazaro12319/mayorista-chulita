@@ -22,8 +22,8 @@ export function linkPedido(
 ): string {
   const encabezado =
     modo === "mayorista"
-      ? `¡Hola ${MARCA.nombre}! Quiero hacer un *pedido MAYORISTA* 📦`
-      : `¡Hola ${MARCA.nombre}! Quiero hacer un *pedido* 👗`;
+      ? `¡Hola ${MARCA.nombre}! Quiero hacer un *pedido MAYORISTA*`
+      : `¡Hola ${MARCA.nombre}! Quiero hacer un *pedido*`;
 
   const detalle = lineas
     .map(

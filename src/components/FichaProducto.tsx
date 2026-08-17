@@ -93,7 +93,6 @@ export function FichaProducto({ producto }: { producto: Producto }) {
 
       <div>
         <h1 className="titulo-display text-3xl sm:text-4xl">{producto.nombre}</h1>
-        <p className="mt-3 leading-relaxed text-tenue">{producto.descripcion}</p>
 
         <div className="mt-6 flex items-baseline gap-3">
           <span className="text-3xl font-semibold text-acento">
@@ -216,13 +215,16 @@ export function FichaProducto({ producto }: { producto: Producto }) {
           </>
         )}
 
-        <div className="mt-9 border-t border-borde pt-6">
-          <h3 className="text-sm font-medium">Detalle</h3>
-          <p className="mt-1.5 text-sm leading-relaxed text-tenue">
-            {producto.detalle}
+      </div>
+
+      {producto.descripcion && (
+        <div className="mt-4 border-t border-borde pt-8 md:col-span-2">
+          <h2 className="text-lg font-semibold">Descripción:</h2>
+          <p className="mt-3 max-w-3xl leading-relaxed text-tenue whitespace-pre-line">
+            {producto.descripcion}
           </p>
         </div>
-      </div>
+      )}
     </div>
   );
 }
