@@ -58,7 +58,7 @@ export function Footer() {
   return (
     <footer className="mt-20">
       <Separador />
-      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-2 lg:grid-cols-4">
         <div>
           <span className="titulo-display text-xl font-extrabold italic tracking-tighter">
             {MARCA.nombre}
