@@ -108,7 +108,7 @@ export function FichaProducto({ producto }: { producto: Producto }) {
 
         {modo === "mayorista" && (
           <p className="mt-2 text-sm text-tenue">
-            Precio mayorista · sin mínimo de compra
+            Precio mayorista · mínimo {MINIMO_MAYORISTA} prendas en total
           </p>
         )}
 

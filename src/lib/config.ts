@@ -19,9 +19,9 @@ export const TEL_MAYORISTA_VISIBLE = "+54 9 11 6474-8850";
 
 export const MARCA = {
   nombre: "Mayorista Chulita",
-  tagline: "Ropa por mayor · Envíos a todo el país · Sin mínimo",
+  tagline: "Ropa por mayor · Envíos a todo el país",
   descripcion:
-    "Venta por mayor de indumentaria con envíos a todas las provincias de Argentina, sin mínimo de compra. Armá tu pedido y lo coordinamos por WhatsApp.",
+    "Venta por mayor de indumentaria con envíos a todas las provincias de Argentina. Armá tu pedido y lo coordinamos por WhatsApp.",
   ubicacion: "Argentina",
   direccion: "",
   instagram: "https://www.instagram.com/mayoristachulita/",
@@ -31,7 +31,7 @@ export const MARCA = {
 } as const;
 
 /** Cantidad mínima de prendas para acceder a precios mayoristas (1 = sin mínimo). */
-export const MINIMO_MAYORISTA = 1;
+export const MINIMO_MAYORISTA = 10;
 
 /**
  * Imágenes de fondo (en /public) detrás de algunas secciones. Vacío = sin

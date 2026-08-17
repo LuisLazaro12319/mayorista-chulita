@@ -7,7 +7,7 @@ import { ComoComprar } from "@/components/ComoComprar";
 import { Separador } from "@/components/Separador";
 import { SeccionConFondo } from "@/components/SeccionConFondo";
 import { PromosCarrusel } from "@/components/PromosCarrusel";
-import { MARCA, BASE_PATH, FONDOS } from "@/lib/config";
+import { MARCA, BASE_PATH, FONDOS, MINIMO_MAYORISTA } from "@/lib/config";
 
 const BENEFICIOS = [
   {
@@ -19,7 +19,7 @@ const BENEFICIOS = [
     texto: "Despachamos por correo a cualquier punto de Argentina.",
   },
   {
-    titulo: "Comprá por mayor, sin mínimo",
+    titulo: `Mayorista desde ${MINIMO_MAYORISTA} prendas`,
     texto: "Cambiá a modo mayorista y mirá los precios por cantidad.",
   },
 ];
@@ -107,9 +107,9 @@ export default function Home() {
             ¿Comprás por cantidad?
           </h2>
           <p className="mt-3 max-w-xl leading-relaxed text-tenue">
-            Accedé a precios mayoristas sin mínimo de compra. Cambiá el modo
-            arriba y vas a ver los precios por unidad en todo el catálogo. Tu
-            pedido se envía directo al canal mayorista.
+            Desde {MINIMO_MAYORISTA} prendas accedés a precios mayoristas.
+            Cambiá el modo arriba y vas a ver los precios por unidad en todo el
+            catálogo. Tu pedido se envía directo al canal mayorista.
           </p>
           <div className="mt-7">
             <ModoToggle tamano="lg" />

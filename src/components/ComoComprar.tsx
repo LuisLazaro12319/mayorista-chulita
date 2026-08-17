@@ -1,4 +1,6 @@
 
+import { MINIMO_MAYORISTA } from "@/lib/config";
+
 /**
  * Sección "Pedidos por WhatsApp": explica el circuito de compra en 4 pasos.
  *
@@ -64,7 +66,7 @@ const PASOS = [
   {
     icono: <IconoElegir />,
     titulo: "Elegí tus productos",
-    texto: "Elegí talles, colores y cantidades, y añadilos al carrito. Precios por mayor, sin mínimo de compra.",
+    texto: `Elegí talles, colores y cantidades, y añadilos al carrito. En mayorista, desde ${MINIMO_MAYORISTA} prendas.`,
   },
   {
     icono: <IconoCarrito />,
