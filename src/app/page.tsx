@@ -40,7 +40,7 @@ export default function Home() {
         />
         {/* Degradé para que el texto se lea sobre el fondo, en claro y oscuro */}
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-background/25 sm:to-transparent" />
-        <div className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-36 lg:py-44">
+        <div className="relative mx-auto max-w-7xl px-4 py-28 sm:px-6 sm:py-44 lg:py-52">
           <p className="mb-4 text-xs uppercase tracking-[0.25em] text-acento">
             Temporada Invierno · Venta por mayor
           </p>
