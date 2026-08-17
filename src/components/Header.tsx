@@ -21,15 +21,19 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 bg-background/85 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center gap-4 px-4 sm:px-6">
-        <Link href="/" className="flex shrink-0 items-center" aria-label={MARCA.nombre}>
+        <Link href="/" className="flex shrink-0 items-center gap-2.5" aria-label={MARCA.nombre}>
           <Image
             src={`${BASE_PATH}/logo.png`}
-            alt={MARCA.nombre}
-            width={52}
-            height={48}
+            alt=""
+            width={68}
+            height={62}
             priority
-            className="h-11 w-auto"
+            className="h-12 w-auto sm:h-14"
           />
+          <span className="whitespace-nowrap text-sm font-extrabold italic leading-none tracking-tight sm:text-lg">
+            <span className="text-foreground">Mayorista</span>{" "}
+            <span className="text-acento">Chulita</span>
+          </span>
         </Link>
 
         <nav className="ml-4 hidden gap-6 text-sm md:flex">
