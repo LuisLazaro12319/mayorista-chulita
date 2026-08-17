@@ -19,7 +19,7 @@ export function PromosCarrusel() {
   if (total === 0) return null;
 
   return (
-    <div className="relative h-56 w-full overflow-hidden bg-superficie sm:h-72 lg:h-80">
+    <div className="relative h-56 w-full overflow-hidden sm:h-72 lg:h-80">
       {PROMOS.map((promo, idx) => (
         <Link
           key={promo.imagen}
@@ -29,22 +29,13 @@ export function PromosCarrusel() {
             idx === i ? "opacity-100" : "pointer-events-none opacity-0"
           }`}
         >
-          {/* Relleno difuminado (cubre los costados sin recortar la imagen) */}
-          <Image
-            src={`${BASE_PATH}/${promo.imagen}`}
-            alt=""
-            aria-hidden
-            fill
-            sizes="100vw"
-            className="scale-110 object-cover blur-xl"
-          />
-          {/* Imagen completa, nítida y centrada (nunca se recorta) */}
+          {/* Ocupa todo el ancho (llena la sección de lado a lado) */}
           <Image
             src={`${BASE_PATH}/${promo.imagen}`}
             alt={promo.titulo}
             fill
             sizes="100vw"
-            className="object-contain"
+            className="object-cover object-center"
             priority={idx === 0}
           />
         </Link>
