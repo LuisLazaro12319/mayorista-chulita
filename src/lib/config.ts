@@ -43,23 +43,14 @@ export const FONDOS = {
 } as const;
 
 /**
- * Imagen de fondo de la portada (hero). Dos versiones para que se vea bien sin
- * recortes: una ancha para PC y una vertical para el celular.
- */
-export const FONDO_INICIO = {
-  pc: "fondo-inicio.jpg",
-  movil: "fondo-inicio-movil.jpg",
-} as const;
-
-/**
  * Promos / ofertas del carrusel del inicio. La dueña sube los banners desde el
  * panel. Si hay más de uno, rotan solos; al tocar uno lleva a la categoría
- * Ofertas. Cada promo tiene versión PC (ancha) y celular (más cuadrada) para
- * que la foto se vea completa en cada dispositivo. Vacío = no se muestra.
+ * Ofertas. La imagen se muestra completa (sin recortar) sobre un fondo
+ * difuminado. Vacío = no se muestra la sección.
  */
-export const PROMOS: { imagen: string; imagenMovil: string; titulo: string; link: string }[] = [
-  { imagen: "promos/promo-1.jpg", imagenMovil: "promos/promo-1-movil.jpg", titulo: "Ofertas", link: "/productos?ver=ofertas" },
-  { imagen: "promos/promo-2.jpg", imagenMovil: "promos/promo-2-movil.jpg", titulo: "Nuevos ingresos", link: "/productos" },
+export const PROMOS: { imagen: string; titulo: string; link: string }[] = [
+  { imagen: "promos/promo-1.jpg", titulo: "Ofertas", link: "/productos?ver=ofertas" },
+  { imagen: "promos/promo-2.jpg", titulo: "Nuevos ingresos", link: "/productos" },
 ];
 
 /**
