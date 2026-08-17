@@ -38,6 +38,27 @@ function Campo({ label, valor, placeholder, area = false }: { label: string; val
   );
 }
 
+function CampoSelect({ label, valor }: { label: string; valor: string }) {
+  return (
+    <div>
+      <label className="mb-1.5 block text-xs font-medium text-tenue">{label}</label>
+      <div className="flex cursor-not-allowed items-center justify-between rounded-lg border border-borde bg-superficie px-3.5 py-2.5 text-sm text-foreground">
+        <span>{valor}</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+      </div>
+    </div>
+  );
+}
+
+function CheckMock({ label, checked = false }: { label: string; checked?: boolean }) {
+  return (
+    <label className="flex cursor-not-allowed items-center gap-2 text-sm">
+      <input type="checkbox" disabled defaultChecked={checked} className="h-4 w-4 accent-[var(--acento)]" />
+      {label}
+    </label>
+  );
+}
+
 function IconoFoto() {
   return (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden="true">
@@ -302,12 +323,16 @@ export function AdminPanel() {
                 <h2 className="mb-4 text-base font-semibold">Agregar producto</h2>
                 <div className="grid gap-4 sm:grid-cols-2">
                   <Campo label="Nombre" placeholder="Ej: Buzo Oversize Dama" />
-                  <Campo label="Categoría" valor="Buzos" />
+                  <CampoSelect label="Categoría" valor="Seleccionar categoría…" />
                   <Campo label="Precio minorista" placeholder="$ 0" />
                   <Campo label="Precio mayorista" placeholder="$ 0" />
                   <div className="sm:col-span-2"><Campo label="Descripción" area placeholder="Material, composición, detalles…" /></div>
-                  <Campo label="Talles" valor="S · M · L · XL" />
-                  <Campo label="Destacar en la home" valor="No" />
+                  <Campo label="Talles (separados por coma)" placeholder="S, M, L, XL" />
+                  <div className="flex flex-wrap items-end gap-5">
+                    <CheckMock label="Destacar en la home" checked />
+                    <CheckMock label="Oferta" />
+                    <CheckMock label="Sin stock" />
+                  </div>
                   <BloqueFotosColores />
                 </div>
                 <Bloqueado />
