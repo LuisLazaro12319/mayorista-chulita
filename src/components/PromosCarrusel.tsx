@@ -19,7 +19,7 @@ export function PromosCarrusel() {
   if (total === 0) return null;
 
   return (
-    <div className="relative aspect-[8/3] w-full overflow-hidden sm:aspect-auto sm:h-64 lg:h-80">
+    <div className="relative aspect-[8/3] w-full overflow-hidden sm:aspect-auto sm:h-80 lg:h-96">
       {PROMOS.map((promo, idx) => (
         <Link
           key={promo.imagen}
