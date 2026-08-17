@@ -37,10 +37,12 @@ export const MINIMO_MAYORISTA = 1;
  * Imágenes de fondo (en /public) detrás de algunas secciones. Vacío = sin
  * fondo. La dueña las cambia desde el panel > Inicio de la web.
  */
+/** Vacío = el fondo toma el color de la tienda (negro en oscuro, blanco en
+ *  claro). La dueña sube su propia foto desde el panel cuando quiera. */
 export const FONDOS = {
-  destacados: "fondo-seccion.jpg",
-  productos: "fondo-seccion.jpg",
-  compras: "fondo-seccion.jpg",
+  destacados: "",
+  productos: "",
+  compras: "",
 } as const;
 
 /**
