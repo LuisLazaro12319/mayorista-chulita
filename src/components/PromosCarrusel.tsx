@@ -35,7 +35,7 @@ export function PromosCarrusel() {
             alt={promo.titulo}
             fill
             sizes="100vw"
-            className="object-cover object-[center_22%]"
+            className="object-cover object-center"
             priority={idx === 0}
           />
         </Link>
