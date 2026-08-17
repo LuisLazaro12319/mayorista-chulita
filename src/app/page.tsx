@@ -101,8 +101,8 @@ export default function Home() {
 
       <Separador />
 
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
-        <div className="rounded-2xl border border-borde bg-superficie p-8 sm:p-12">
+      <SeccionConFondo fondo={FONDOS.compras} className="px-4 py-16 sm:px-6">
+        <div className="mx-auto max-w-7xl rounded-2xl border border-borde bg-superficie p-8 sm:p-12">
           <h2 className="titulo-display text-2xl sm:text-3xl">
             ¿Comprás por cantidad?
           </h2>
@@ -115,7 +115,7 @@ export default function Home() {
             <ModoToggle tamano="lg" />
           </div>
         </div>
-      </section>
+      </SeccionConFondo>
     </>
   );
 }
