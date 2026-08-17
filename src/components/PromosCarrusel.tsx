@@ -19,7 +19,7 @@ export function PromosCarrusel() {
   if (total === 0) return null;
 
   return (
-    <div className="relative h-52 w-full overflow-hidden sm:h-72 lg:h-96">
+    <div className="relative aspect-square w-full overflow-hidden sm:aspect-auto sm:h-72 lg:h-96">
       {PROMOS.map((promo, idx) => (
         <Link
           key={promo.imagen}
@@ -29,12 +29,22 @@ export function PromosCarrusel() {
             idx === i ? "opacity-100" : "pointer-events-none opacity-0"
           }`}
         >
+          {/* Celular: versión cuadrada */}
+          <Image
+            src={`${BASE_PATH}/${promo.imagenMovil}`}
+            alt={promo.titulo}
+            fill
+            sizes="100vw"
+            className="object-cover sm:hidden"
+            priority={idx === 0}
+          />
+          {/* PC: versión ancha */}
           <Image
             src={`${BASE_PATH}/${promo.imagen}`}
             alt={promo.titulo}
             fill
             sizes="100vw"
-            className="object-cover"
+            className="hidden object-cover sm:block"
             priority={idx === 0}
           />
         </Link>

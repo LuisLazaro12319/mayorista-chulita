@@ -5,7 +5,7 @@ import Link from "next/link";
 import { productos, CATEGORIAS } from "@/data/productos";
 import { precio } from "@/lib/formato";
 import { SelectorPaleta } from "@/components/SelectorPaleta";
-import { MARCA, MINIMO_MAYORISTA, BASE_PATH, FONDOS, PROMOS } from "@/lib/config";
+import { MARCA, MINIMO_MAYORISTA, BASE_PATH, FONDOS, FONDO_INICIO, PROMOS } from "@/lib/config";
 
 /* WhatsApp de contacto para activar el panel (número del desarrollador). */
 const WA_CONTACTO = "5491156199449";
@@ -394,10 +394,22 @@ export function AdminPanel() {
               <div className="space-y-3">
                 {PROMOS.map((promo, i) => (
                   <div key={promo.imagen} className="flex flex-col gap-3 rounded-lg border border-borde bg-superficie p-3 sm:flex-row sm:items-center">
-                    <div
-                      className="h-24 w-full shrink-0 overflow-hidden rounded-md border border-borde bg-cover bg-center sm:w-56"
-                      style={{ backgroundImage: `url(${BASE_PATH}/${promo.imagen})` }}
-                    />
+                    <div className="flex gap-2">
+                      <div className="text-center">
+                        <div
+                          className="h-24 w-40 overflow-hidden rounded-md border border-borde bg-cover bg-center"
+                          style={{ backgroundImage: `url(${BASE_PATH}/${promo.imagen})` }}
+                        />
+                        <span className="mt-1 block text-[10px] font-medium text-tenue">💻 PC</span>
+                      </div>
+                      <div className="text-center">
+                        <div
+                          className="h-24 w-24 overflow-hidden rounded-md border border-borde bg-cover bg-center"
+                          style={{ backgroundImage: `url(${BASE_PATH}/${promo.imagenMovil})` }}
+                        />
+                        <span className="mt-1 block text-[10px] font-medium text-tenue">📱 Celu</span>
+                      </div>
+                    </div>
                     <div className="min-w-0 flex-1">
                       <p className="text-sm font-medium">{promo.titulo}</p>
                       <p className="text-xs text-tenue">Orden {i + 1} · lleva a Ofertas</p>
@@ -408,7 +420,7 @@ export function AdminPanel() {
               </div>
               <div className="mt-4 flex items-center gap-3 rounded-lg border border-dashed border-acento bg-acento/5 px-4 py-5 text-sm text-tenue">
                 <span className="text-xl">🖼️</span>
-                <span><span className="font-semibold text-acento">Subir promo</span> — elegí el banner (ideal ancho, tipo cartel). Podés sumar varias y ordenarlas.</span>
+                <span><span className="font-semibold text-acento">Subir promo</span> — subí la versión <strong className="text-foreground">ancha (PC)</strong> y la <strong className="text-foreground">cuadrada (celular)</strong> para que se vea completa en los dos. Podés sumar varias y ordenarlas.</span>
               </div>
               <Bloqueado />
             </div>
@@ -419,14 +431,24 @@ export function AdminPanel() {
             <div className="space-y-5">
               <div className="rounded-xl border border-borde bg-background p-6">
                 <h2 className="mb-4 text-base font-semibold">Portada / Banner principal</h2>
-                <label className="mb-1.5 block text-xs font-medium text-tenue">Imagen de fondo</label>
-                <div
-                  className="relative mb-1.5 h-32 overflow-hidden rounded-lg border border-borde bg-cover bg-center"
-                  style={{ backgroundImage: `url(${BASE_PATH}/fondo-inicio.jpg)` }}
-                >
-                  <span className="absolute bottom-2 right-2 cursor-not-allowed rounded-lg bg-background/90 px-3 py-1.5 text-xs font-semibold text-acento">🖼️ Cambiar imagen</span>
+                <label className="mb-1.5 block text-xs font-medium text-tenue">Imagen de fondo (una para PC y una para celular)</label>
+                <div className="mb-1.5 grid gap-3 sm:grid-cols-[2fr_1fr]">
+                  <div
+                    className="relative h-32 overflow-hidden rounded-lg border border-borde bg-cover bg-center"
+                    style={{ backgroundImage: `url(${BASE_PATH}/${FONDO_INICIO.pc})` }}
+                  >
+                    <span className="absolute left-2 top-2 rounded-md bg-background/90 px-2 py-0.5 text-[10px] font-semibold text-tenue">💻 PC</span>
+                    <span className="absolute bottom-2 right-2 cursor-not-allowed rounded-lg bg-background/90 px-3 py-1.5 text-xs font-semibold text-acento">🖼️ Cambiar</span>
+                  </div>
+                  <div
+                    className="relative h-32 overflow-hidden rounded-lg border border-borde bg-cover bg-center"
+                    style={{ backgroundImage: `url(${BASE_PATH}/${FONDO_INICIO.movil})` }}
+                  >
+                    <span className="absolute left-2 top-2 rounded-md bg-background/90 px-2 py-0.5 text-[10px] font-semibold text-tenue">📱 Celu</span>
+                    <span className="absolute bottom-2 right-2 cursor-not-allowed rounded-lg bg-background/90 px-2.5 py-1.5 text-xs font-semibold text-acento">🖼️</span>
+                  </div>
                 </div>
-                <p className="mb-4 text-[11px] text-tenue">Se ve detrás del texto del inicio.</p>
+                <p className="mb-4 text-[11px] text-tenue">Dos versiones para que la foto se vea completa en cada pantalla (sin recortes feos).</p>
                 <div className="grid gap-4">
                   <Campo label="Etiqueta de arriba" valor="Temporada Invierno · Venta por mayor" />
                   <Campo label="Título" valor="Ropa de damas y niñas directo de fábrica" />

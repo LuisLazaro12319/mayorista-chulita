@@ -7,7 +7,7 @@ import { ComoComprar } from "@/components/ComoComprar";
 import { Separador } from "@/components/Separador";
 import { SeccionConFondo } from "@/components/SeccionConFondo";
 import { PromosCarrusel } from "@/components/PromosCarrusel";
-import { MARCA, BASE_PATH, FONDOS } from "@/lib/config";
+import { MARCA, BASE_PATH, FONDOS, FONDO_INICIO } from "@/lib/config";
 
 const BENEFICIOS = [
   {
@@ -30,13 +30,23 @@ export default function Home() {
   return (
     <>
       <section className="relative overflow-hidden">
+        {/* Celular: versión vertical */}
         <Image
-          src={`${BASE_PATH}/fondo-inicio.jpg`}
+          src={`${BASE_PATH}/${FONDO_INICIO.movil}`}
           alt=""
           aria-hidden
           fill
           priority
-          className="object-cover object-right"
+          className="object-cover object-center sm:hidden"
+        />
+        {/* PC: versión ancha */}
+        <Image
+          src={`${BASE_PATH}/${FONDO_INICIO.pc}`}
+          alt=""
+          aria-hidden
+          fill
+          priority
+          className="hidden object-cover object-right sm:block"
         />
         {/* Degradé para que el texto se lea sobre el fondo, en claro y oscuro */}
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-background/25 sm:to-transparent" />
