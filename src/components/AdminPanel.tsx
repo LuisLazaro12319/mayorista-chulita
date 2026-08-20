@@ -10,6 +10,15 @@ import { MARCA, MINIMO_MAYORISTA, BASE_PATH, FONDOS, PROMOS } from "@/lib/config
 /* WhatsApp de contacto para activar el panel (número del desarrollador). */
 const WA_CONTACTO = "5491156199449";
 
+/* Mismas frases que la cinta desplazable real del inicio (src/app/page.tsx). */
+const TEXTOS_CINTA_DEMO = [
+  "FABRICACIÓN PROPIA",
+  "HASTA 50% OFF POR MAYOR",
+  "DISEÑOS ACTUALES",
+  "ENVÍOS A TODO EL PAÍS",
+  "COMPRA SEGURA",
+];
+
 type Vista = "inicio" | "productos" | "categorias" | "promos" | "web" | "colores" | "config";
 
 const NAV: { id: Vista; nombre: string; icono: string }[] = [
@@ -150,9 +159,9 @@ function BloqueFotosColores() {
       <button
         type="button"
         onClick={() => setAbierto((v) => !v)}
-        className="mt-3 flex items-center gap-1.5 rounded-full border border-dashed border-acento px-3 py-1.5 text-xs font-medium text-acento transition-colors hover:bg-acento/10"
+        className="mt-3 flex items-center gap-1.5 rounded-none border border-dashed border-acento px-3 py-1.5 text-xs font-medium text-acento transition-colors hover:bg-acento/10"
       >
-        <span className="flex h-5 w-5 items-center justify-center rounded-full border border-dashed border-acento">+</span>
+        <span className="flex h-5 w-5 items-center justify-center rounded-none border border-dashed border-acento">+</span>
         Agregar otro color
       </button>
 
@@ -163,7 +172,7 @@ function BloqueFotosColores() {
             <div>
               <label className="mb-1 block text-[11px] text-tenue">Tono</label>
               <input type="color" value={hex} onChange={(e) => setHex(e.target.value)}
-                className="h-10 w-14 cursor-pointer rounded-lg border border-borde bg-background p-1" />
+                className="h-10 w-14 cursor-pointer rounded-none border border-borde bg-background p-1" />
             </div>
             <div className="min-w-[130px] flex-1">
               <label className="mb-1 block text-[11px] text-tenue">Nombre</label>
@@ -177,7 +186,7 @@ function BloqueFotosColores() {
               </span>
             </div>
             <button type="button" onClick={agregar}
-              className="rounded-lg bg-acento px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90">
+              className="rounded-none bg-acento px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90">
               Agregar
             </button>
           </div>
@@ -199,7 +208,7 @@ function PreviewFondo({ archivo, nota }: { archivo: string; nota: string }) {
         style={archivo ? { backgroundImage: `url(${BASE_PATH}/${archivo})` } : undefined}
       >
         {!archivo && <span>Sin imagen — toma el color de la tienda</span>}
-        <span className="absolute bottom-2 right-2 cursor-not-allowed rounded-lg bg-background/90 px-3 py-1.5 text-xs font-semibold text-acento">🖼️ Cambiar imagen</span>
+        <span className="absolute bottom-2 right-2 cursor-not-allowed rounded-none bg-background/90 px-3 py-1.5 text-xs font-semibold text-acento">🖼️ Cambiar imagen</span>
       </div>
       <p className="text-[11px] text-tenue">{nota}</p>
     </div>
@@ -209,7 +218,7 @@ function PreviewFondo({ archivo, nota }: { archivo: string; nota: string }) {
 function Bloqueado() {
   return (
     <div className="mt-4 flex flex-wrap items-center gap-3">
-      <button disabled className="cursor-not-allowed rounded-lg bg-borde px-5 py-2.5 text-sm font-semibold text-tenue">🔒 Guardar</button>
+      <button disabled className="cursor-not-allowed rounded-none bg-borde px-5 py-2.5 text-sm font-semibold text-tenue">🔒 Guardar</button>
       <span className="text-xs text-tenue">Disponible cuando actives tu plan de panel</span>
     </div>
   );
@@ -218,13 +227,13 @@ function Bloqueado() {
 function Acciones({ agotado = false }: { agotado?: boolean }) {
   return (
     <div className="flex flex-wrap gap-1.5">
-      <span className="cursor-not-allowed rounded-md border border-borde bg-superficie px-2.5 py-1 text-xs font-medium text-tenue">✏️ Editar</span>
+      <span className="cursor-not-allowed rounded-none border border-borde bg-superficie px-2.5 py-1 text-xs font-medium text-tenue">✏️ Editar</span>
       {agotado ? (
-        <span className="cursor-not-allowed rounded-md border border-[#bfe6cd] bg-[#e6f6ec] px-2.5 py-1 text-xs font-medium text-[#1c8a4d]">✅ Reponer</span>
+        <span className="cursor-not-allowed rounded-none border border-[#bfe6cd] bg-[#e6f6ec] px-2.5 py-1 text-xs font-medium text-[#1c8a4d]">✅ Reponer</span>
       ) : (
-        <span className="cursor-not-allowed rounded-md border border-[#f3c9c4] bg-[#fdf2f1] px-2.5 py-1 text-xs font-medium text-[#c0392b]">🔴 Marcar agotado</span>
+        <span className="cursor-not-allowed rounded-none border border-[#f3c9c4] bg-[#fdf2f1] px-2.5 py-1 text-xs font-medium text-[#c0392b]">🔴 Marcar agotado</span>
       )}
-      <span className="cursor-not-allowed rounded-md border border-borde bg-superficie px-2.5 py-1 text-xs font-medium text-tenue">🗑️ Eliminar</span>
+      <span className="cursor-not-allowed rounded-none border border-borde bg-superficie px-2.5 py-1 text-xs font-medium text-tenue">🗑️ Eliminar</span>
     </div>
   );
 }
@@ -235,6 +244,16 @@ export function AdminPanel() {
 
   return (
     <div className="min-h-screen bg-superficie/60">
+      <style>{`
+        @keyframes marquee-panel {
+          0% { transform: translateX(0%); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-marquee-loop-panel {
+          width: max-content;
+          animation: marquee-panel 18s linear infinite;
+        }
+      `}</style>
       {/* Ribbon */}
       <div className="sticky top-0 z-30 bg-acento px-4 py-2.5 text-center text-sm font-semibold text-white">
         ℹ️ Vista previa del panel — así lo manejarías vos. La edición en vivo se activa al confirmar tu plan.
@@ -247,7 +266,7 @@ export function AdminPanel() {
           <nav className="flex flex-1 flex-col gap-1">
             {NAV.map((n) => (
               <button key={n.id} onClick={() => setVista(n.id)}
-                className={`flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-left text-sm font-medium transition-colors ${
+                className={`flex items-center gap-2.5 rounded-none px-3 py-2.5 text-left text-sm font-medium transition-colors ${
                   vista === n.id ? "bg-white/15 text-white" : "text-white/70 hover:text-white"
                 }`}>
                 <span>{n.icono}</span> {n.nombre}
@@ -265,7 +284,7 @@ export function AdminPanel() {
           <div className="mb-5 flex gap-2 overflow-x-auto md:hidden">
             {NAV.map((n) => (
               <button key={n.id} onClick={() => setVista(n.id)}
-                className={`shrink-0 rounded-full px-3.5 py-1.5 text-sm font-medium ${
+                className={`shrink-0 rounded-none px-3.5 py-1.5 text-sm font-medium ${
                   vista === n.id ? "bg-acento text-white" : "border border-borde bg-background text-tenue"
                 }`}>
                 {n.nombre}
@@ -311,7 +330,7 @@ export function AdminPanel() {
                 </div>
                 <a href={`https://wa.me/${WA_CONTACTO}?text=${encodeURIComponent("Hola! Vi la vista previa del panel de la tienda y quiero saber más")}`}
                   target="_blank" rel="noopener noreferrer"
-                  className="shrink-0 rounded-lg bg-white px-5 py-3 text-sm font-bold text-acento">💬 Consultar</a>
+                  className="shrink-0 rounded-none bg-white px-5 py-3 text-sm font-bold text-acento">💬 Consultar</a>
               </div>
             </div>
           )}
@@ -341,7 +360,7 @@ export function AdminPanel() {
               <div className="rounded-xl border border-borde bg-background p-6">
                 <div className="mb-4 flex items-center justify-between gap-3">
                   <h2 className="text-base font-semibold">Productos cargados</h2>
-                  <span className="cursor-not-allowed rounded-lg bg-acento/90 px-3 py-1.5 text-xs font-semibold text-white">+ Agregar producto</span>
+                  <span className="cursor-not-allowed rounded-none bg-acento/90 px-3 py-1.5 text-xs font-semibold text-white">+ Agregar producto</span>
                 </div>
                 <div className="overflow-x-auto">
                   <table className="w-full min-w-[560px] text-left text-sm">
@@ -387,7 +406,7 @@ export function AdminPanel() {
             <div className="rounded-xl border border-borde bg-background p-6">
               <div className="mb-4 flex items-center justify-between gap-3">
                 <h2 className="text-base font-semibold">Categorías</h2>
-                <span className="cursor-not-allowed rounded-lg bg-acento/90 px-3 py-1.5 text-xs font-semibold text-white">+ Agregar categoría</span>
+                <span className="cursor-not-allowed rounded-none bg-acento/90 px-3 py-1.5 text-xs font-semibold text-white">+ Agregar categoría</span>
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full min-w-[440px] text-left text-sm">
@@ -414,7 +433,7 @@ export function AdminPanel() {
             <div className="rounded-xl border border-borde bg-background p-6">
               <div className="mb-1 flex flex-wrap items-center justify-between gap-3">
                 <h2 className="text-base font-semibold">Promos / Ofertas</h2>
-                <span className="cursor-not-allowed rounded-lg bg-acento/90 px-3 py-1.5 text-xs font-semibold text-white">+ Agregar promo</span>
+                <span className="cursor-not-allowed rounded-none bg-acento/90 px-3 py-1.5 text-xs font-semibold text-white">+ Agregar promo</span>
               </div>
               <p className="mb-4 text-sm text-tenue">Banners que se muestran arriba de Destacados. Si cargás más de uno, <strong className="text-foreground">rotan solos</strong>. Al tocar una promo, la clienta va directo a la <strong className="text-foreground">categoría Ofertas</strong> del catálogo y elige qué comprar.</p>
               <div className="space-y-3">
@@ -450,23 +469,55 @@ export function AdminPanel() {
           {vista === "web" && (
             <div className="space-y-5">
               <div className="rounded-xl border border-borde bg-background p-6">
-                <h2 className="mb-4 text-base font-semibold">Portada / Banner principal</h2>
-                <label className="mb-1.5 block text-xs font-medium text-tenue">Imagen de fondo</label>
-                <div
-                  className="relative mb-1.5 h-32 overflow-hidden rounded-lg border border-borde bg-cover bg-center"
-                  style={{ backgroundImage: `url(${BASE_PATH}/fondo-inicio.jpg)` }}
-                >
-                  <span className="absolute bottom-2 right-2 cursor-not-allowed rounded-lg bg-background/90 px-3 py-1.5 text-xs font-semibold text-acento">🖼️ Cambiar imagen</span>
+                <h2 className="mb-4 text-base font-semibold">Portada / Hero principal</h2>
+                <label className="mb-1.5 block text-xs font-medium text-tenue">Foto del modelo</label>
+                <div className="relative mb-1.5 flex h-64 max-w-sm overflow-hidden rounded-lg border border-borde bg-superficie sm:h-72">
+                  <div className="flex flex-1 flex-col items-center justify-center gap-1.5 px-3 text-center text-[11px] text-tenue">
+                    <span className="font-semibold text-foreground">Título</span>
+                    <span>Bajada</span>
+                    <span className="mt-1 rounded-none border border-borde px-2 py-1 text-[10px]">Botones</span>
+                  </div>
+                  <div
+                    className="relative h-full w-[45%] shrink-0 overflow-hidden bg-cover bg-top"
+                    style={{ backgroundImage: `url(${BASE_PATH}/fondo-inicio.jpg)` }}
+                  >
+                    <div className="absolute inset-y-0 left-0 w-1/2" style={{ background: "linear-gradient(to right, var(--background), transparent)" }} />
+                    <span className="absolute bottom-2 right-2 cursor-not-allowed rounded-none bg-background/90 px-2.5 py-1 text-[11px] font-semibold text-acento">🖼️ Cambiar</span>
+                  </div>
                 </div>
-                <p className="mb-1 flex flex-wrap items-center gap-2 text-[11px] text-tenue">
-                  <span className="rounded-full bg-acento/15 px-2.5 py-1 text-xs font-semibold text-acento">📐 Medida ideal: 1920 × 700 px</span>
-                  <span>Se ve detrás del texto del inicio. Es un fondo, así que dejá lo importante al centro.</span>
+                <p className="mb-4 flex flex-wrap items-center gap-2 text-[11px] text-tenue">
+                  <span className="rounded-full bg-acento/15 px-2.5 py-1 text-xs font-semibold text-acento">📐 Vertical 4:5 — ideal 1080 × 1350 px</span>
+                  <span>Más alta que ancha (como una foto de perfil de Instagram). Ocupa el costado derecho de la pantalla, de arriba a abajo — no todo el ancho. Se funde sola con el color de tu tienda del lado del texto, así no se nota el corte.</span>
                 </p>
-                <div className="mb-4"></div>
                 <div className="grid gap-4">
-                  <Campo label="Etiqueta de arriba" valor="Temporada Invierno · Venta por mayor" />
-                  <Campo label="Título" valor="Ropa de damas y niñas directo de fábrica" />
-                  <Campo label="Bajada" area valor="Somos fabricantes. Elegí las prendas, armá tu pedido por mayor y lo cerramos por WhatsApp, con envíos a todas las provincias." />
+                  <Campo label="Etiqueta de arriba" valor="Ropa de mujer · Venta por mayor" />
+                  <Campo label="Título" valor="Ropa de mujer directo de fábrica" />
+                  <Campo label="Bajada" area valor="Somos fabricantes. Elegí las prendas, armá tu pedido por mayor y lo cerramos por WhatsApp — con envíos a todo el país." />
+                </div>
+                <Bloqueado />
+              </div>
+
+              <div className="rounded-xl border border-borde bg-background p-6">
+                <h2 className="mb-1 text-base font-semibold">Cinta de frases</h2>
+                <p className="mb-4 text-sm text-tenue">La franja que se desliza sola debajo de la portada. Agregá las frases que quieras destacar.</p>
+                <div className="overflow-hidden rounded-lg bg-acento py-2.5">
+                  <div className="flex animate-marquee-loop-panel whitespace-nowrap gap-6 text-xs font-black uppercase tracking-wider text-black">
+                    {[...TEXTOS_CINTA_DEMO, ...TEXTOS_CINTA_DEMO].map((t, i) => (
+                      <span key={i} className="flex items-center gap-6">
+                        {t}
+                        <span className="text-black/50">✦</span>
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {TEXTOS_CINTA_DEMO.map((t) => (
+                    <span key={t} className="flex items-center gap-1.5 rounded-none border border-borde bg-superficie py-1 pl-2.5 pr-1.5 text-xs">
+                      {t}
+                      <span className="cursor-not-allowed text-tenue">×</span>
+                    </span>
+                  ))}
+                  <span className="cursor-not-allowed rounded-none border border-dashed border-acento px-2.5 py-1 text-xs font-medium text-acento">+ Agregar frase</span>
                 </div>
                 <Bloqueado />
               </div>
@@ -484,21 +535,41 @@ export function AdminPanel() {
                     <PreviewFondo archivo={FONDOS.productos} nota="Detrás del catálogo completo." />
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-xs font-medium text-tenue">Detrás de “Comprás por cantidad”</label>
-                    <PreviewFondo archivo={FONDOS.compras} nota="Detrás del recuadro del final del inicio." />
+                    <label className="mb-1.5 block text-xs font-medium text-tenue">“Comprá Mayorista” — foto para PC</label>
+                    <div
+                      className="relative mb-1.5 aspect-[2/1] w-full overflow-hidden rounded-lg border border-borde bg-superficie bg-cover bg-center"
+                      style={{ backgroundImage: `url(${BASE_PATH}/fondo-mayorista.jpg)` }}
+                    >
+                      <span className="absolute bottom-2 right-2 cursor-not-allowed rounded-none bg-background/90 px-2.5 py-1 text-[11px] font-semibold text-acento">🖼️ Cambiar</span>
+                    </div>
+                    <p className="text-[11px] text-tenue">📐 Horizontal (ancha) — ideal 1920 × 960 px. Se ve en computadora y tablet.</p>
+                  </div>
+                  <div>
+                    <label className="mb-1.5 block text-xs font-medium text-tenue">“Comprá Mayorista” — foto para celular</label>
+                    <div
+                      className="relative mb-1.5 aspect-square w-full max-w-[240px] overflow-hidden rounded-lg border border-borde bg-superficie bg-cover bg-center"
+                      style={{ backgroundImage: `url(${BASE_PATH}/fondo-mayorista-mobile.jpg)` }}
+                    >
+                      <span className="absolute bottom-2 right-2 cursor-not-allowed rounded-none bg-background/90 px-2.5 py-1 text-[11px] font-semibold text-acento">🖼️ Cambiar</span>
+                    </div>
+                    <p className="text-[11px] text-tenue">📐 Cuadrada (1:1) — ideal 1080 × 1080 px. Se ve en el celular; subí un recorte propio para que no se corten las personas.</p>
                   </div>
                 </div>
+                <p className="mt-3 rounded-lg bg-acento/10 px-3 py-2 text-[11px] text-tenue">
+                  💡 Esta sección pide <strong className="text-foreground">2 fotos</strong> porque la del celular necesita un recorte distinto al de PC — si usás una sola foto muy panorámica, en el celular se puede cortar lo importante de los costados.
+                </p>
                 <Bloqueado />
               </div>
 
               <div className="rounded-xl border border-borde bg-background p-6">
-                <h2 className="mb-1 text-base font-semibold">Bloque “Comprás por cantidad”</h2>
-                <p className="mb-4 text-sm text-tenue">El recuadro del final del inicio que invita a comprar por mayor.</p>
+                <h2 className="mb-1 text-base font-semibold">Bloque “Comprá Mayorista”</h2>
+                <p className="mb-4 text-sm text-tenue">La sección grande con foto de fondo, al final del inicio, que invita a comprar por mayor.</p>
                 <div className="grid gap-4 sm:grid-cols-2">
-                  <Campo label="Título" valor="¿Comprás por cantidad?" />
+                  <Campo label="Etiqueta de arriba" valor="Tu estilo, tu actitud" />
+                  <Campo label="Título" valor="Compra Mayorista" />
                   <Campo label="Mínimo de prendas para precio mayorista" valor={String(MINIMO_MAYORISTA)} />
                   <div className="sm:col-span-2">
-                    <Campo label="Texto" area valor={`Desde ${MINIMO_MAYORISTA} prendas accedés a precios mayoristas. Cambiá el modo arriba y vas a ver los precios por unidad en todo el catálogo.`} />
+                    <Campo label="Texto" area valor={`Ropa de mujer al mejor precio, calidad y estilo. Accedé a precios de fábrica desde solo ${MINIMO_MAYORISTA} prendas.`} />
                   </div>
                 </div>
                 <p className="mt-3 rounded-lg bg-acento/10 px-3 py-2 text-[11px] text-tenue">
@@ -525,8 +596,8 @@ export function AdminPanel() {
                 <h2 className="mb-1 text-base font-semibold">Tema por defecto</h2>
                 <p className="mb-4 text-sm text-tenue">Con qué modo abre la tienda. Igual, tus clientas pueden cambiar entre claro y oscuro con el botón 🌙 del sitio.</p>
                 <div className="flex gap-3">
-                  <span className="cursor-not-allowed rounded-lg border-2 border-acento bg-superficie px-4 py-2.5 text-sm font-semibold">☀️ Claro</span>
-                  <span className="cursor-not-allowed rounded-lg border border-borde bg-superficie px-4 py-2.5 text-sm font-medium text-tenue">🌙 Oscuro</span>
+                  <span className="cursor-not-allowed rounded-none border-2 border-acento bg-superficie px-4 py-2.5 text-sm font-semibold">☀️ Claro</span>
+                  <span className="cursor-not-allowed rounded-none border border-borde bg-superficie px-4 py-2.5 text-sm font-medium text-tenue">🌙 Oscuro</span>
                 </div>
                 <Bloqueado />
               </div>
@@ -541,7 +612,7 @@ export function AdminPanel() {
                 <Campo label="Nombre de la marca" valor={MARCA.nombre} />
                 <Campo label="WhatsApp" valor="+54 9 11 2355-5043" />
                 <Campo label="Envíos" valor="A todas las provincias de Argentina" />
-                <Campo label="Rubro" valor="Ropa de damas y niñas · Fábrica" />
+                <Campo label="Rubro" valor="Indumentaria femenina · Fábrica" />
                 <div className="sm:col-span-2"><Campo label="Descripción" area valor={MARCA.descripcion} /></div>
               </div>
               <Bloqueado />

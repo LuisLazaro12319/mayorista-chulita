@@ -1,6 +1,7 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Separador } from "@/components/Separador";
-import { MARCA, TEL_MAYORISTA_VISIBLE, WHATSAPP } from "@/lib/config";
+import { MARCA, TEL_MAYORISTA_VISIBLE, WHATSAPP, BASE_PATH } from "@/lib/config";
 
 /**
  * Bandera argentina dibujada a mano.
@@ -56,13 +57,22 @@ function IconoWhatsApp() {
 
 export function Footer() {
   return (
-    <footer className="mt-20">
+    <footer>
       <Separador />
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-2 lg:grid-cols-4">
         <div>
-          <span className="titulo-display text-xl font-extrabold italic tracking-tighter">
-            {MARCA.nombre}
-          </span>
+          <div className="flex items-center gap-2.5">
+            <Image
+              src={`${BASE_PATH}/logo.png`}
+              alt=""
+              width={80}
+              height={80}
+              className="h-10 w-10 rounded-full object-cover"
+            />
+            <span className="titulo-display text-xl font-extrabold italic tracking-tighter">
+              {MARCA.nombre}
+            </span>
+          </div>
           <p className="mt-3 max-w-xs text-sm leading-relaxed text-tenue">
             {MARCA.descripcion}
           </p>
@@ -105,7 +115,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Instagram de ${MARCA.nombre}`}
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-borde text-foreground transition-colors hover:border-transparent hover:bg-[#E1306C] hover:text-white"
+                className="flex h-11 w-11 items-center justify-center rounded-none border border-borde text-foreground transition-colors hover:border-transparent hover:bg-[#E1306C] hover:text-white"
               >
                 <IconoInstagram />
               </a>
@@ -116,7 +126,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`TikTok de ${MARCA.nombre}`}
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-borde text-foreground transition-colors hover:border-transparent hover:bg-foreground hover:text-background"
+                className="flex h-11 w-11 items-center justify-center rounded-none border border-borde text-foreground transition-colors hover:border-transparent hover:bg-foreground hover:text-background"
               >
                 <IconoTikTok />
               </a>
@@ -126,7 +136,7 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`WhatsApp de ${MARCA.nombre}`}
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-borde text-foreground transition-colors hover:border-transparent hover:bg-[#25D366] hover:text-white"
+              className="flex h-11 w-11 items-center justify-center rounded-none border border-borde text-foreground transition-colors hover:border-transparent hover:bg-[#25D366] hover:text-white"
             >
               <IconoWhatsApp />
             </a>

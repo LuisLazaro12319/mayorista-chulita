@@ -25,12 +25,12 @@ export function Header() {
           <Image
             src={`${BASE_PATH}/logo.png`}
             alt=""
-            width={68}
-            height={62}
+            width={96}
+            height={96}
             priority
-            className="h-12 w-auto sm:h-14"
+            className="h-11 w-11 rounded-full object-cover sm:h-12 sm:w-12"
           />
-          <span className="whitespace-nowrap text-sm font-extrabold italic leading-none tracking-tight sm:text-lg">
+          <span className="whitespace-nowrap text-sm font-extrabold uppercase leading-none tracking-tight sm:text-lg">
             <span className="text-foreground">Mayorista</span>{" "}
             <span className="text-acento">Chulita</span>
           </span>
@@ -57,7 +57,7 @@ export function Header() {
 
           <Link
             href="/carrito"
-            className="relative flex h-9 items-center gap-2 rounded-full border border-borde px-3.5 text-sm transition-colors hover:border-acento"
+            className="relative flex h-9 items-center gap-2 rounded-none border border-borde px-3.5 text-sm transition-colors hover:border-acento"
           >
             <svg
               width="16"
